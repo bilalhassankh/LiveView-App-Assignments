@@ -1,0 +1,24 @@
+<div class="survey-component-container">
+  <section class="row">
+  <h4><%= @game.game_name %></h4>
+  </section>
+  <section class="row">
+    <.form
+      let={f}
+      for={@changeset}
+      phx-change="validate"
+      phx-submit="save"
+      phx_target={@myself}
+      id={@id}>
+ 
+      <%= label f, :ratings%>
+      <%= select f, :ratings, Enum.reverse(1..5) %>
+      <%= error_tag f, :ratings %>
+ 
+      <%= hidden_input f, :user_id%>
+      <%= hidden_input f, :game_id%>
+ 
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </.form>
+  </section>
+</div>
