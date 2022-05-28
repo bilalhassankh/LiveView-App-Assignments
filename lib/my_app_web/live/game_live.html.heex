@@ -1,0 +1,12 @@
+<%= for game <- @games do %>
+  <div><%= game.game_name %>
+    <button 
+    style="margin-left: 50px;"
+    phx-click="Delete"
+    phx-value-id= {game.id } >Delete</button> 
+  </div>
+<% end %>
+<form action="#" phx-submit="Add">
+  <%= text_input :game, :game_name, placeholder: "Enter game name" %>
+  <%= submit "Add", phx_disable_with: "Adding..." %>
+</form>
