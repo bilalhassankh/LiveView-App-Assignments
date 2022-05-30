@@ -1,0 +1,32 @@
+<h1>Log in</h1>
+
+<.form let={f} for={@changeset} action={Routes.user_session_path(@socket, :create)} as={:user}
+    phx-submit="save"
+    phx-trigger-action={@trigger_submit}
+    phx-change="validate"
+  >
+    <%= if @error_message do %>
+    <div class="alert alert-danger">
+      <p><%= @error_message %></p>
+    </div>
+  <% end %>
+
+  <%= label f, :email %>
+  <%= email_input f, :email, required: true %>
+ <%= error_tag f, :email %>
+  <%= label f, :password %>
+ <%= password_input f, :password, value: input_value(f, :password), required: true %>
+  <%= error_tag f, :password %>
+
+  <%= label f, :remember_me, "Keep me logged in for 60 days" %>
+  <%= checkbox f, :remember_me %>
+
+  <div>
+    <%= submit "Log in" %>
+  </div>
+</.form>
+
+<p>
+  <%= link "Register", to: Routes.user_registration_path(@socket, :new) %> |
+  <%= link "Forgot your password?", to: Routes.user_reset_password_path(@socket, :new) %>
+</p>
